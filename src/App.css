@@ -15,9 +15,14 @@
   .app-system {
     grid-column: 1;
 
-    .app-system-input {
+    .app-system-input-wrapper {
       height: 100%;
       width: 100%;
+
+      .app-system-input {
+        height: 100%;
+        resize: none;
+      }
     }
   }
 
@@ -35,8 +40,12 @@
       gap: 1rem;
       align-items: end;
 
-      .app-user-message-input {
+      .app-user-message-input-wrapper {
         flex: 1;
+
+        .app-user-message-input {
+          height: calc(50px - 0.562rem - 2px);
+        }
       }
 
       .app-user-message-button {

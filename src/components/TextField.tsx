@@ -14,18 +14,14 @@ export interface TextFieldProps extends AriaTextFieldProps {
   label?: string
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
+  inputClassName?: string
 }
 
-export function TextField({
-  label,
-  description,
-  errorMessage,
-  ...props
-}: TextFieldProps) {
+export function TextField({ label, description, errorMessage, inputClassName, ...props }: TextFieldProps) {
   return (
     <AriaTextField {...props}>
       <Label>{label}</Label>
-      <Input style={{ height: 'calc(50px - 0.562rem - 2px)' }} />
+      <Input className={inputClassName} />
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
     </AriaTextField>

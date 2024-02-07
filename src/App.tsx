@@ -27,13 +27,14 @@ function App() {
   return (
     <div className="app">
       <div className="app-system">
-        <TextArea className="react-aria-TextField app-system-input" label="System" />
+        <TextArea className="react-aria-TextField app-system-input-wrapper" inputClassName='app-system-input' label="System" />
       </div>
       <div className="app-chat">
         <div className="app-messages"></div>
         <div className="app-user-message">
           <TextField
-            className="react-aria-TextField app-user-message-input"
+            className="react-aria-TextField app-user-message-input-wrapper"
+            inputClassName='app-user-message-input'
             label="Eingabe"
             value={userInput}
             onChange={setUserInput}
