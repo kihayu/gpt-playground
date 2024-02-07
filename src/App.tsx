@@ -5,6 +5,7 @@ import { RadioGroup } from './components/RadioGroup'
 import { Radio } from 'react-aria-components'
 import { TextArea } from './components/TextArea'
 import { Button } from './components/Button'
+import './App.css'
 
 function App() {
   const [userInput, setUserInput] = React.useState('')
@@ -24,48 +25,23 @@ function App() {
   ))
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gap: '3rem',
-        gridTemplateColumns: '300px 1fr 300px', // Updated gridTemplateColumns
-        height: '100%',
-      }}
-    >
-      <div style={{ gridColumn: '1' }}>
-        <TextArea style={{ height: '100%', width: '100%' }} label="System" />
-        {/* <textarea style={{ height: '100%', resize: 'none' }} /> */}
+    <div className="app">
+      <div className="app-system">
+        <TextArea className="react-aria-TextField app-system-input" label="System" />
       </div>
-      <div
-        style={{
-          gridColumn: '2',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <div style={{ flex: '1' }}>
-          {/* Chat interface will be implemented here */}
-        </div>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'end' }}>
-          {/* <input {...inputProps} style={{ flex: '1' }} />
-          <button {...buttonProps}>Senden</button> */}
+      <div className="app-chat">
+        <div className="app-messages"></div>
+        <div className="app-user-message">
           <TextField
-            style={{ flex: '1' }}
+            className="react-aria-TextField app-user-message-input"
             label="Eingabe"
             value={userInput}
             onChange={setUserInput}
           />
-          <Button style={{ height: '50px' }}>Senden</Button>
+          <Button className="react-aria-Button app-user-message-button">Senden</Button>
         </div>
       </div>
-      <div
-        style={{
-          gridColumn: '3',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '3rem',
-        }}
-      >
+      <div className="app-settings">
         <Slider
           label="Maximale Länge"
           defaultValue={sliderValue}
@@ -73,11 +49,7 @@ function App() {
           maxValue={2000}
           onChange={setSliderValue}
         />
-        <RadioGroup
-          label="Randomness"
-          value={radioValue}
-          onChange={setRadioValue}
-        >
+        <RadioGroup label="Randomness" value={radioValue} onChange={setRadioValue}>
           {radioChildren}
         </RadioGroup>
       </div>
