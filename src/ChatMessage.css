@@ -1,0 +1,22 @@
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.chat-message:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.chat-message-author {
+  font-weight: bold;
+  color: #EFEFEF;
+}
+
+.chat-message-content {
+  margin-top: 5px;
+  color: #CDCDCD;
+}
