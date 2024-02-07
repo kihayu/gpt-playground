@@ -1,8 +1,9 @@
 {
-  "name": "gpt-dashboard",
+  "name": "gpt-playground",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "author": "Keanu Hie <hie.keanu@gmail.com>",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
