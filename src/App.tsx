@@ -33,6 +33,24 @@ function App() {
     </Radio>
   ))
 
+  const messages = [
+    { author: 'System', message: 'How are you?' },
+    { author: 'User', message: "I'm fine, thank you!" },
+    { author: 'System', message: 'What are you up to?' },
+    { author: 'User', message: 'Just working on some code.' },
+    { author: 'System', message: 'Do you need any help?' },
+    { author: 'User', message: "Yes, I'm having trouble with a function." },
+    { author: 'System', message: 'Can you describe the problem?' },
+    { author: 'User', message: "I'm getting an undefined error." },
+    { author: 'System', message: 'Have you checked the variable declarations?' },
+    { author: 'User', message: 'Let me check.' },
+    { author: 'System', message: 'Take your time.' },
+    { author: 'User', message: 'I found the issue, thanks!' },
+    { author: 'System', message: "You're welcome! Anything else you need?" },
+    { author: 'User', message: "No, that's all for now." },
+    { author: 'System', message: 'Alright, happy coding!' },
+  ]
+
   return (
     <div className="app">
       <div className="app-system">
@@ -44,21 +62,9 @@ function App() {
       </div>
       <div className="app-chat">
         <div className="app-messages">
-          <ChatMessage author="System" message="How are you?" />
-          <ChatMessage author="User" message="I'm fine, thank you!" />
-          <ChatMessage author="System" message="What are you up to?" />
-          <ChatMessage author="User" message="Just working on some code." />
-          <ChatMessage author="System" message="Do you need any help?" />
-          <ChatMessage author="User" message="Yes, I'm having trouble with a function." />
-          <ChatMessage author="System" message="Can you describe the problem?" />
-          <ChatMessage author="User" message="I'm getting an undefined error." />
-          <ChatMessage author="System" message="Have you checked the variable declarations?" />
-          <ChatMessage author="User" message="Let me check." />
-          <ChatMessage author="System" message="Take your time." />
-          <ChatMessage author="User" message="I found the issue, thanks!" />
-          <ChatMessage author="System" message="You're welcome! Anything else you need?" />
-          <ChatMessage author="User" message="No, that's all for now." />
-          <ChatMessage author="System" message="Alright, happy coding!" />
+          {messages.map((messageObject) => (
+            <ChatMessage key={messageObject.message} author={messageObject.author} message={messageObject.message} />
+          ))}
         </div>
         <div className="app-user-message">
           <TextField
