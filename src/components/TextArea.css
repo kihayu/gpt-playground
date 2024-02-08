@@ -4,7 +4,6 @@
 .react-aria-TextField {
   display: flex;
   flex-direction: column;
-  width: fit-content;
   color: var(--text-color);
 
   .react-aria-TextArea {
