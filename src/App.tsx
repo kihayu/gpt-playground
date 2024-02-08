@@ -56,7 +56,7 @@ function App() {
       <div className="app-system">
         <TextArea
           className="react-aria-TextField app-system-input-wrapper"
-          inputClassName="app-system-input"
+          inputClassName="react-aria-TextArea app-system-input"
           label="System"
         />
       </div>
@@ -69,7 +69,7 @@ function App() {
         <div className="app-user-message">
           <TextField
             className="react-aria-TextField app-user-message-input-wrapper"
-            inputClassName="app-user-message-input"
+            inputClassName="react-aria-Input app-user-message-input"
             label="Eingabe"
             value={userInput}
             onChange={setUserInput}
