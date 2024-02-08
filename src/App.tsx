@@ -1,6 +1,5 @@
 import React from 'react'
 import { TextField } from './components/TextField'
-import { Slider } from './components/Slider'
 import { RadioGroup } from './components/RadioGroup'
 import { Radio } from 'react-aria-components'
 import { TextArea } from './components/TextArea'
@@ -10,10 +9,19 @@ import { ChatMessage } from './ChatMessage'
 
 function App() {
   const [userInput, setUserInput] = React.useState('')
-  const [sliderValue, setSliderValue] = React.useState(1000)
+  const [sliderValue, setSliderValue] = React.useState('Lang')
   const [radioValue, setRadioValue] = React.useState('normal')
 
-  const radioChildren = [
+  const outputLengthRadios = [
+    { label: 'Kurz', value: 200 },
+    { label: 'Lang', value: 1280 },
+  ].map((element) => (
+    <Radio key={element.value} value={element.label}>
+      {element.label}
+    </Radio>
+  ))
+
+  const randomnessRadios = [
     { label: 'Sehr statisch', value: 'very-static' },
     { label: 'Statisch', value: 'static' },
     { label: 'Normal', value: 'normal' },
@@ -64,15 +72,11 @@ function App() {
         </div>
       </div>
       <div className="app-settings">
-        <Slider
-          label="Maximale Länge"
-          defaultValue={sliderValue}
-          minValue={200}
-          maxValue={2000}
-          onChange={setSliderValue}
-        />
+        <RadioGroup inline label="Maximale Länge" value={sliderValue} onChange={setSliderValue}>
+          {outputLengthRadios}
+        </RadioGroup>
         <RadioGroup label="Randomness" value={radioValue} onChange={setRadioValue}>
-          {radioChildren}
+          {randomnessRadios}
         </RadioGroup>
       </div>
     </div>
