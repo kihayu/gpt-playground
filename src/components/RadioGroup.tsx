@@ -4,33 +4,35 @@ import {
   RadioGroup as AriaRadioGroup,
   RadioGroupProps as AriaRadioGroupProps,
   Text,
-  ValidationResult
-} from 'react-aria-components';
+  ValidationResult,
+} from 'react-aria-components'
 
-import './RadioGroup.css';
+import './RadioGroup.css'
 
 export interface RadioGroupProps extends Omit<AriaRadioGroupProps, 'children'> {
-  children?: React.ReactNode;
-  label?: string;
-  description?: string;
-  errorMessage?: string | ((validation: ValidationResult) => string);
+  children?: React.ReactNode
+  inline?: boolean
+  label?: string
+  description?: string
+  errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
-export function RadioGroup(
-  {
-    label,
-    description,
-    errorMessage,
-    children,
-    ...props
-  }: RadioGroupProps
-) {
+export function RadioGroup({
+  inline,
+  label,
+  description,
+  errorMessage,
+  children,
+  ...props
+}: Readonly<RadioGroupProps>) {
+  const radioGroupClassName = `react-aria-RadioGroup${inline ? ' react-aria-RadioGroup-inline' : ''}`
+
   return (
-    <AriaRadioGroup {...props}>
+    <AriaRadioGroup {...props} className={radioGroupClassName}>
       <Label>{label}</Label>
-      {children}
+      <div className="react-aria-RadioGroup-children">{children}</div>
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
     </AriaRadioGroup>
-  );
+  )
 }

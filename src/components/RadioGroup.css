@@ -3,10 +3,19 @@
 @import "./theme.css";
 
 .react-aria-RadioGroup {
+  color: var(--text-color);
+
+  &.react-aria-RadioGroup-inline {
+    .react-aria-RadioGroup-children {
+      flex-direction: row;
+    }
+  }
+}
+
+.react-aria-RadioGroup-children {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  color: var(--text-color);
 }
 
 .react-aria-Radio {
