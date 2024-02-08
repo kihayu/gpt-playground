@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { TextField } from './components/TextField'
 import { RadioGroup } from './components/RadioGroup'
-import { Radio } from 'react-aria-components'
+import { Form, Radio } from 'react-aria-components'
 import { TextArea } from './components/TextArea'
 import { Button } from './components/Button'
 import './App.css'
@@ -12,6 +12,8 @@ function App() {
   const [userInput, setUserInput] = React.useState('')
   const [sliderValue, setSliderValue] = React.useState('Lang')
   const [radioValue, setRadioValue] = React.useState('normal')
+  const [username, setUsername] = React.useState('')
+  const [assistantName, setAssistantName] = React.useState('')
 
   const appMessagesRef = React.useRef<HTMLDivElement>(null)
 
@@ -67,6 +69,15 @@ function App() {
     setMessages([...tempMessages, responseData])
   }
 
+  const displayAuthor = (role: string) => {
+    if (role === 'user') {
+      return username || 'Du'
+    } else if (role === 'assistant') {
+      return assistantName || 'ChatGPT'
+    }
+    return role
+  }
+
   useEffect(() => {
     if (appMessagesRef.current) {
       appMessagesRef.current.scrollTop = appMessagesRef.current.scrollHeight
@@ -76,6 +87,8 @@ function App() {
   return (
     <div className="app">
       <div className="app-system">
+        <TextField label="Dein Name" value={username} onChange={setUsername} placeholder="Du" />
+        <TextField label="Assistent Name" value={assistantName} onChange={setAssistantName} placeholder="ChatGPT" />
         <TextArea
           onChange={setSystemInput}
           value={systemInput}
@@ -90,7 +103,11 @@ function App() {
           {messages.map(
             (messageObject) =>
               messageObject.role !== 'system' && (
-                <ChatMessage key={messageObject.content} author={messageObject.role} message={messageObject.content} />
+                <ChatMessage
+                  key={messageObject.content}
+                  author={displayAuthor(messageObject.role)}
+                  message={messageObject.content}
+                />
               ),
           )}
         </div>
