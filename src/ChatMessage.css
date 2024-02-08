@@ -14,9 +14,11 @@
 .chat-message-author {
   font-weight: bold;
   color: #EFEFEF;
+  font-size: 18px;
 }
 
 .chat-message-content {
   margin-top: 5px;
   color: #CDCDCD;
+  font-size: 16px;
 }
