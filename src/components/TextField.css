@@ -20,11 +20,14 @@
       outline: 2px solid var(--focus-ring-color);
       outline-offset: -1px;
     }
-  }
 
-  .react-aria-Input {
     &[data-invalid] {
       border-color: var(--invalid-color);
+    }
+
+    &[data-disabled] {
+      border-color: var(--border-color-disabled);
+      color: var(--text-color-disabled);
     }
   }
 
@@ -35,12 +38,5 @@
 
   [slot=description] {
     font-size: 12px;
-  }
-
-  .react-aria-Input {
-    &[data-disabled] {
-      border-color: var(--border-color-disabled);
-      color: var(--text-color-disabled);
-    }
   }
 }

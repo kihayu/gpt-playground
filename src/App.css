@@ -63,7 +63,7 @@
         flex: 1;
 
         .app-user-message-input {
-          height: calc(50px - 0.562rem - 2px);
+          height: calc(50px - 4.2px);
         }
       }
 
