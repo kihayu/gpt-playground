@@ -15,6 +15,7 @@ function App() {
   const [username, setUsername] = React.useState('')
   const [assistantName, setAssistantName] = React.useState('')
   const [inChat, setInChat] = React.useState(false)
+  const [receiveMessage, setReceiveMessage] = React.useState(false)
 
   const appMessagesRef = React.useRef<HTMLDivElement>(null)
 
@@ -75,6 +76,7 @@ function App() {
 
   const sendMessage = async () => {
     setInChat(true)
+    setReceiveMessage(true)
     let tempMessages = []
     const userMessageObject = { role: 'user', content: userInput }
 
@@ -104,6 +106,7 @@ function App() {
 
     const responseData = await response.json()
     setMessages([...tempMessages, responseData])
+    setReceiveMessage(false)
   }
 
   const reset = () => {
@@ -131,7 +134,7 @@ function App() {
       <div className="app-system">
         <TextField label="Dein Name" value={username} onChange={setUsername} placeholder="Du" isDisabled={inChat} />
         <TextField
-          label="Assistent Name (nur für Anzeige)"
+          label="Assistent Name (nur für Darstellung)"
           value={assistantName}
           onChange={setAssistantName}
           placeholder="ChatGPT"
@@ -146,7 +149,7 @@ function App() {
           label="System"
           isDisabled={inChat}
         />
-        <Button className="react-aria-Button app-system-button" onPressUp={reset} isDisabled={!inChat}>
+        <Button className="react-aria-Button app-system-reset-button" onPressUp={reset} isDisabled={!inChat}>
           Chat neu starten
         </Button>
       </div>
@@ -161,6 +164,9 @@ function App() {
                   message={messageObject.content}
                 />
               ),
+          )}
+          {receiveMessage && (
+            <ChatMessage author={displayAuthor(assistantName || 'ChatGPT')} message="Schreibt..." writing />
           )}
         </div>
         <div className="app-user-message">

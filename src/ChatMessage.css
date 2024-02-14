@@ -1,8 +1,8 @@
 .chat-message {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  padding: 10px;
+  margin: 10px 0;
+  padding: 10px 0;
   font-family: Arial, sans-serif;
 }
 
@@ -21,4 +21,8 @@
   margin-top: 5px;
   color: #CDCDCD;
   font-size: 16px;
+}
+
+.chat-message-content--writing {
+  font-style: italic;
 }
