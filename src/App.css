@@ -16,6 +16,7 @@
     grid-column: 1;
     display: grid;
     grid-template-rows: 60px 60px 1fr;
+    gap: 1rem;
 
     .app-system-input-wrapper {
       height: 100%;

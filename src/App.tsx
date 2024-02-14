@@ -14,6 +14,7 @@ function App() {
   const [randomnessValue, setRandomnessValue] = React.useState('normal')
   const [username, setUsername] = React.useState('')
   const [assistantName, setAssistantName] = React.useState('')
+  const [inChat, setInChat] = React.useState(false)
 
   const appMessagesRef = React.useRef<HTMLDivElement>(null)
 
@@ -73,6 +74,7 @@ function App() {
   }
 
   const sendMessage = async () => {
+    setInChat(true)
     let tempMessages = []
     const userMessageObject = { role: 'user', content: userInput }
 
@@ -104,6 +106,11 @@ function App() {
     setMessages([...tempMessages, responseData])
   }
 
+  const reset = () => {
+    setInChat(false)
+    setMessages([])
+  }
+
   const displayAuthor = (role: string) => {
     if (role === 'user') {
       return username || 'Du'
@@ -122,8 +129,14 @@ function App() {
   return (
     <div className="app">
       <div className="app-system">
-        <TextField label="Dein Name" value={username} onChange={setUsername} placeholder="Du" />
-        <TextField label="Assistent Name" value={assistantName} onChange={setAssistantName} placeholder="ChatGPT" />
+        <TextField label="Dein Name" value={username} onChange={setUsername} placeholder="Du" isDisabled={inChat} />
+        <TextField
+          label="Assistent Name (nur für Anzeige)"
+          value={assistantName}
+          onChange={setAssistantName}
+          placeholder="ChatGPT"
+          isDisabled={inChat}
+        />
         <TextArea
           onChange={setSystemInput}
           value={systemInput}
@@ -131,7 +144,11 @@ function App() {
           className="react-aria-TextField app-system-input-wrapper"
           inputClassName="react-aria-TextArea app-system-input"
           label="System"
+          isDisabled={inChat}
         />
+        <Button className="react-aria-Button app-system-button" onPressUp={reset} isDisabled={!inChat}>
+          Chat neu starten
+        </Button>
       </div>
       <div className="app-chat">
         <div className="app-messages" ref={appMessagesRef}>
