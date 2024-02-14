@@ -38,9 +38,7 @@ function App() {
     </Radio>
   ))
 
-  const [messages, setMessages] = React.useState([
-    { role: 'system', content: systemInput || 'Du bist ein hilfreicher Assistent.' },
-  ] as Array<{ role: string; content: string }>)
+  const [messages, setMessages] = React.useState([] as Array<{ role: string; content: string }>)
 
   const handleUserInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -75,9 +73,18 @@ function App() {
   }
 
   const sendMessage = async () => {
+    let tempMessages = []
     const userMessageObject = { role: 'user', content: userInput }
+
+    if (messages.length === 0) {
+      tempMessages = [
+        { role: 'system', content: systemInput || 'Du bist ein hilfreicher Assistent.' },
+        userMessageObject,
+      ]
+    } else {
+      tempMessages = [...messages, userMessageObject]
+    }
     setUserInput('')
-    const tempMessages = [...messages, userMessageObject]
     setMessages(tempMessages)
 
     const response = await fetch('http://localhost:3000/gpt', {
