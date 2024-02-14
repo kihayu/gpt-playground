@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react'
 import { TextField } from './components/TextField'
 import { RadioGroup } from './components/RadioGroup'
-import { Form, Radio } from 'react-aria-components'
+import { Radio } from 'react-aria-components'
 import { TextArea } from './components/TextArea'
 import { Button } from './components/Button'
-import './App.css'
 import { ChatMessage } from './ChatMessage'
+import './App.css'
 
 function App() {
   const [systemInput, setSystemInput] = React.useState('')
   const [userInput, setUserInput] = React.useState('')
-  const [sliderValue, setSliderValue] = React.useState('Lang')
-  const [radioValue, setRadioValue] = React.useState('normal')
+  const [maxLengthValue, setMaxLengthValue] = React.useState('Lang')
+  const [randomnessValue, setRandomnessValue] = React.useState('normal')
   const [username, setUsername] = React.useState('')
   const [assistantName, setAssistantName] = React.useState('')
 
@@ -48,6 +48,32 @@ function App() {
     }
   }
 
+  const transformMaxLengthValue = (maxLengthValue: string): number => {
+    if (maxLengthValue === 'Kurz') {
+      return 150
+    } else if (maxLengthValue === 'Lang') {
+      return 1200
+    } else {
+      return 0
+    }
+  }
+
+  const transformTemperature = (randomnessValue: string): number => {
+    if (randomnessValue === 'very-static') {
+      return 0.3
+    } else if (randomnessValue === 'static') {
+      return 0.6
+    } else if (randomnessValue === 'normal') {
+      return 0.8
+    } else if (randomnessValue === 'random') {
+      return 1.0
+    } else if (randomnessValue === 'very-random') {
+      return 1.5
+    } else {
+      return 0.7
+    }
+  }
+
   const sendMessage = async () => {
     const userMessageObject = { role: 'user', content: userInput }
     setUserInput('')
@@ -62,6 +88,8 @@ function App() {
       body: JSON.stringify({
         messages: tempMessages,
         model: 'gpt-3.5-turbo',
+        maxTokens: transformMaxLengthValue(maxLengthValue),
+        temperature: transformTemperature(randomnessValue),
       }),
     })
 
@@ -126,10 +154,10 @@ function App() {
         </div>
       </div>
       <div className="app-settings">
-        <RadioGroup inline label="Maximale Länge" value={sliderValue} onChange={setSliderValue}>
+        <RadioGroup inline label="Maximale Länge" value={maxLengthValue} onChange={setMaxLengthValue}>
           {outputLengthRadios}
         </RadioGroup>
-        <RadioGroup label="Randomness" value={radioValue} onChange={setRadioValue}>
+        <RadioGroup label="Randomness" value={randomnessValue} onChange={setRandomnessValue}>
           {randomnessRadios}
         </RadioGroup>
       </div>
