@@ -7,11 +7,6 @@
 }
 
 .app {
-  display: grid;
-  grid-template-columns: 300px 1fr 300px;
-  gap: 3rem;
-  height: 100%;
-
   .app-system {
     grid-column: 1;
     display: grid;
@@ -42,6 +37,7 @@
     flex-direction: column;
     gap: 4rem;
     padding-top: 21px;
+    max-height: 40vh;
 
     .app-messages {
       flex: 1;
@@ -85,5 +81,23 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .app {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    gap: 3rem;
+    height: 100%;
+
+    .app-settings {
+      margin-top: 0;
+    }
+
+    .app-chat {
+      max-height: 100%;
+    }
   }
 }
