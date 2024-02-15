@@ -132,7 +132,13 @@ function App() {
   return (
     <div className="app">
       <div className="app-system">
-        <TextField label="Dein Name" value={username} onChange={setUsername} placeholder="Du" isDisabled={inChat} />
+        <TextField
+          label="Dein Name (nur für Darstellung)"
+          value={username}
+          onChange={setUsername}
+          placeholder="Du"
+          isDisabled={inChat}
+        />
         <TextField
           label="Assistent Name (nur für Darstellung)"
           value={assistantName}
