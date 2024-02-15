@@ -26,3 +26,14 @@
 .chat-message-content--writing {
   font-style: italic;
 }
+
+@media (prefers-color-scheme: light) {
+
+  .chat-message-author {
+    color: #242424;
+  }
+
+  .chat-message-content {
+    color: #242424;
+  }
+}
