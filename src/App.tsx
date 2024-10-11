@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { TextField } from './components/TextField'
-import { RadioGroup } from './components/RadioGroup'
+import { TextField } from './components/aria-components/TextField'
+import { RadioGroup } from './components/aria-components/RadioGroup'
 import { Radio } from 'react-aria-components'
-import { TextArea } from './components/TextArea'
-import { Button } from './components/Button'
-import { ChatMessage } from './ChatMessage'
+import { TextArea } from './components/aria-components/TextArea'
+import { Button } from './components/aria-components/Button'
+import { ChatMessage } from './components/ChatMessage'
 import './App.css'
 
 function App() {
@@ -98,7 +98,7 @@ function App() {
       },
       body: JSON.stringify({
         messages: tempMessages,
-        model: 'gpt-3.5-turbo',
+        model: 'o1-mini',
         maxTokens: transformMaxLengthValue(maxLengthValue),
         temperature: transformTemperature(randomnessValue),
       }),
